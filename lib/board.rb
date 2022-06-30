@@ -31,15 +31,15 @@ class Board
   end
 
   def create_board
-    create_coordinates.map { |coordinates| Position.new(coordinates)}
+    create_coordinates.map { |coordinate| Position.new(coordinate)}
   end
 
-  def position(coordinates)
-    @positions.find { |position| position.coordinates == coordinates }
+  def position(coordinate)
+    @positions.find { |position| position.coordinate == coordinate }
   end
 
-  def place_knight(coordinates)
-    knight = Knight.new(position(coordinates))
-    position(coordinates).add_content(knight)
+  def place_knight(coordinate)
+    knight = Knight.new(position(coordinate), self)
+    position(coordinate).add_content(knight)
   end
 end

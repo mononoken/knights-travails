@@ -4,8 +4,8 @@
 class Position
   attr_reader :coordinates, :content
 
-  def initialize(coordinates, content = nil)
-    @coordinates = coordinates
+  def initialize(coordinate, content = nil)
+    @coordinate = coordinate
     @content = content
   end
 
