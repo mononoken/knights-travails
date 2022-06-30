@@ -1,15 +1,13 @@
 # frozen_string_literal: true
 
 require_relative './position'
-require_relative './knight'
 
 # 8x8 board for playing Chess.
 class Board
-  attr_reader :positions, :knight
+  attr_reader :positions
 
   def initialize
     @positions = create_board
-    @knight = nil
   end
 
   def create_coordinates
@@ -37,10 +35,5 @@ class Board
 
   def position(coordinate)
     @positions.find { |position| position.coordinate == coordinate }
-  end
-
-  def place_knight(coordinate)
-    @knight = Knight.new(position(coordinate), self)
-    position(coordinate).add_content(knight)
   end
 end
