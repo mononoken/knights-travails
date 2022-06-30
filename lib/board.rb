@@ -39,7 +39,7 @@ class Board
   end
 
   def place_knight(coordinates)
-    knight = Knight.new(position(coordinates), self)
+    knight = Knight.new(position(coordinates))
     position(coordinates).add_content(knight)
   end
 end
