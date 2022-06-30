@@ -6,11 +6,11 @@ require_relative './board'
 class Game
   def initialize
     @board = Board.new
-    @knight = nil
+    @knight = nilre
   end
 
   def place_knight(coordinate)
-    @knight = Knight.new(position(coordinate), self)
-    position(coordinate).add_content(knight)
+    @knight = Knight.new(board.position(coordinate), self)
+    board.position(coordinate).add_content(knight)
   end
 end
