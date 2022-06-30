@@ -1,33 +1,35 @@
 # frozen_string_literal: true
 
+require_relative './position'
+
 # 8x8 board for playing Chess.
 class Board
-  attr_reader :array
-
+  # Consider making a hash where each coordinate is a key, and the value is the piece on that coordinate.
+  # Can make methods preventing multiple pieces being on the same spot.
   def initialize
-    @array = create_board
-    # Create array of coordinates
+    @positions = create_board
   end
 
-  def create_board
-    array = Array.new
+  def create_coordinates
+    coordinates = Array.new.push([0,0])
     x = 0
     y = 0
 
     loop do
-      if x == 7 && y == 7
-        array.push([x,y])
-        break
-      end
-
-      array.push([x, y])
       if y == 7
         x += 1
         y = 0
       else
         y += 1
       end
+
+      coordinates.push([x, y])
+      break if x == 7 && y ==7
     end
-    array
+    coordinates
+  end
+
+  def create_board
+    create_coordinates.map { |coordinates| Position.new(coordinates)}
   end
 end
