@@ -13,6 +13,12 @@ class Knight
     @position = destination
   end
 
+  def valid_move_positions
+    @board.positions.filter do |position|
+      possible_coordinates.any?(position.coordinate)
+    end
+  end
+
   def possible_moves
     [[2, 1], [2, -1], [-2, 1], [-2, -1], [1, 2], [1, -2], [-1, 2], [-1, -2]]
   end
@@ -24,12 +30,6 @@ class Knight
 
     possible_coordinates.filter do |coordinate|
       @board.positions.any? { |position| position.coordinate == coordinate }
-    end
-  end
-
-  def valid_move_positions
-    @board.positions.filter do |position|
-      possible_coordinates.any?(position.coordinate)
     end
   end
 end
