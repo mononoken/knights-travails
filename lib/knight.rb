@@ -13,14 +13,23 @@ class Knight
     @position = destination
   end
 
+  def possible_moves
+    [[2, 1], [2, -1], [-2, 1], [-2, -1], [1, 2], [1, -2], [-1, 2], [-1, -2]]
+  end
+
+  def possible_coordinates
+    possible_coordinates = possible_moves.map do |move|
+      [@position.coordinate[0] + move[0], @position.coordinate[1] + move[1]]
+    end
+
+    possible_coordinates.filter do |coordinate|
+      @board.positions.any? { |position| position.coordinate == coordinate }
+    end
+  end
+
   def valid_move_positions
-    current_coordinate = @position.coordinate
-    possible_moves = [[2, 1], [2, -1], [-2, 1], [-2, -1], [1, 2], [1, -2], [-1, 2], [-1, -2]]
-    # Add [2, 1], [1, 2], [-2, -1], [-1,-2], [-2, 1], [1, -2], [2, -1], or [-1, 2] to current position coordinates
-    possible_coordinates = possible_moves.map { |move| [current_coordinate[0] + move[0], current_coordinate[1] + move[1]] }
-    # Of these coordinates, return the positions with these coordinates that are inside board.positions
-    filtered_coordinates = possible_coordinates.filter { |coordinate| @board.positions.any? { |position| position.coordinate == coordinate } }
-    # Return array of valid positions for movement
-    valid_positions = @board.positions.filter { |position| filtered_coordinates.any?(position.coordinate) }
+    @board.positions.filter do |position|
+      possible_coordinates.any?(position.coordinate)
+    end
   end
 end
