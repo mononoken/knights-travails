@@ -5,10 +5,11 @@ require_relative './knight'
 
 # 8x8 board for playing Chess.
 class Board
-  attr_reader :positions
+  attr_reader :positions, :knight
 
   def initialize
     @positions = create_board
+    @knight = nil
   end
 
   def create_coordinates
@@ -39,7 +40,7 @@ class Board
   end
 
   def place_knight(coordinate)
-    knight = Knight.new(position(coordinate), self)
+    @knight = Knight.new(position(coordinate), self)
     position(coordinate).add_content(knight)
   end
 end
