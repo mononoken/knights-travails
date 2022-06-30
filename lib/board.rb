@@ -1,11 +1,12 @@
 # frozen_string_literal: true
 
 require_relative './position'
+require_relative './knight'
 
 # 8x8 board for playing Chess.
 class Board
-  # Consider making a hash where each coordinate is a key, and the value is the piece on that coordinate.
-  # Can make methods preventing multiple pieces being on the same spot.
+  attr_reader :positions
+
   def initialize
     @positions = create_board
   end
@@ -31,5 +32,14 @@ class Board
 
   def create_board
     create_coordinates.map { |coordinates| Position.new(coordinates)}
+  end
+
+  def position(coordinates)
+    @positions.find { |position| position.coordinates == coordinates }
+  end
+
+  def place_knight(coordinates)
+    knight = Knight.new(position(coordinates), self)
+    position(coordinates).add_content(knight)
   end
 end
