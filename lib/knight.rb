@@ -10,6 +10,8 @@ class Knight
   end
 
   def move(destination)
+    return nil unless valid_move_positions.any?(destination)
+
     @position = destination
   end
 
