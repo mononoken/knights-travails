@@ -14,8 +14,16 @@ class Game
   end
 
   def place_knight(coordinate)
+
+
     @knight = Knight.new(@board.position(coordinate), @board)
     @board.position(coordinate).add_content(@knight)
+  end
+
+  def remove_knight
+    # What is safe navigation? Look up when we have internet connection.
+    @knight.position.empty_content unless @knight.nil?
+    @knight = nil
   end
 
   def move_knight(destination_coordinates)
@@ -26,5 +34,9 @@ class Game
     @knight.position.empty_content
     @knight.move(destination_position)
     destination_position.add_content(@knight)
+  end
+
+  def knight_moves(start, finish)
+    # place_knight
   end
 end
