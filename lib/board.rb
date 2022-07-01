@@ -37,6 +37,7 @@ class Board
     @positions.find { |position| position.coordinate == coordinate }
   end
 
+  # Consider deleting later, but it is useful for testing that knight movement is working.
   def piece_locations
     @positions.filter { |position| !position.content.nil? }
   end
