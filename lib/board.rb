@@ -38,7 +38,11 @@ class Board
   end
 
   # Consider deleting later, but it is useful for testing that knight movement is working.
-  def piece_locations
+  def piece_positions
     @positions.filter { |position| !position.content.nil? }
+  end
+
+  def piece_coordinates
+    piece_positions.map(&:coordinate)
   end
 end
