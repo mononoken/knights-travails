@@ -14,7 +14,7 @@ class Game
   end
 
   def place_knight(coordinate)
-
+    remove_knight unless @knight.nil?
 
     @knight = Knight.new(@board.position(coordinate), @board)
     @board.position(coordinate).add_content(@knight)
