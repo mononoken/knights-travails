@@ -12,13 +12,19 @@ class Knight
   def move(destination)
     return nil unless valid_move_positions.any?(destination)
 
+    # @position.empty_content
     @position = destination
+    # destination.add_content(self)
   end
 
   def valid_move_positions
     @board.positions.filter do |position|
       possible_coordinates.any?(position.coordinate)
     end
+  end
+
+  def valid_move?(position)
+    valid_move_positions.any?(position)
   end
 
   def possible_moves
