@@ -14,4 +14,9 @@ class Position
 
     @content = content
   end
+
+  def empty_content
+    @content = nil
+  end
 end
+g
