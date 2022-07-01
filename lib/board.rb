@@ -36,4 +36,8 @@ class Board
   def position(coordinate)
     @positions.find { |position| position.coordinate == coordinate }
   end
+
+  def piece_locations
+    @positions.filter { |position| !position.content.nil? }
+  end
 end
