@@ -19,4 +19,3 @@ class Position
     @content = nil
   end
 end
-g
