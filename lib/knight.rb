@@ -12,9 +12,7 @@ class Knight
   def move(destination)
     return nil unless valid_move_positions.any?(destination)
 
-    # @position.empty_content
     @position = destination
-    # destination.add_content(self)
   end
 
   def valid_move_positions

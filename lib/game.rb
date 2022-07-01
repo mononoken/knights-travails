@@ -2,6 +2,7 @@
 
 require_relative './board'
 require_relative './knight'
+require_relative './position'
 
 # Represent a game of chess.
 class Game
@@ -19,9 +20,9 @@ class Game
 
   def move_knight(destination_coordinates)
     destination_position = @board.position(destination_coordinates)
-    return nil if @knight.move(destination_position).nil?
 
-    # This should move knight and unpopulate old Position and populate new Position.
+    return nil unless @knight.valid_move?(destination_position)
+
     @knight.position.empty_content
     @knight.move(destination_position)
     destination_position.add_content(@knight)
