@@ -36,7 +36,24 @@ class Game
     destination_position.add_content(@knight)
   end
 
-  def knight_moves(start, finish)
-    # place_knight
+  # DON'T PANIC. STACK OVERFLOW.
+  # Create paths group so that each path can track each other's progress.
+  def knight_moves(start, finish, path = Array.new(start))
+    place_knight(start) if @knight.nil?
+
+    start_position = @board.position(start)
+
+    if @knight.moves(start_position).map(&:coordinate).any?(finish)
+      path.push(@knight.moves(start_position).map(&:coordinate).filter do |coordinate|
+        coordinate == finish
+      end)
+      path
+    else
+      @knight.moves(start_position).each do |position|
+        # Need something to stop the paths that have not been met yet.
+        knight_moves(position.coordinate, finish, Array.new(position.coordinate).unshift(path))
+        # Think I have to do some kind of flatten Array. Check later.
+      end
+    end
   end
 end
