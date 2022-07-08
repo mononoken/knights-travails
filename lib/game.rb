@@ -4,6 +4,9 @@ require_relative './board'
 require_relative './knight'
 require_relative './position'
 
+# Delete?
+require_relative './tree'
+
 # Represent a game of chess.
 class Game
   attr_reader :board, :knight
@@ -37,7 +40,16 @@ class Game
   end
 
   # DON'T PANIC. STACK OVERFLOW.
-  # Create paths group so that each path can track each other's progress.
+  # Need to bring over Node and Tree class
+  # Tree class should be more than just binary
+  # Every 'round' check if any of the paths hvae reached finish.
+  # If yes, return that path
+  # If no, build tree off of these paths
+
+  # Faith recommended running two trees starting from start and finish
+  # Would have to compare each node against the other tree to see if any nodes match
+  # (this would be the midpoint)
+  # Search for midpoint would resemble array2.filter { |num| array1.any?(num) }
   def knight_moves(start, finish, path = Array.new(start))
     place_knight(start) if @knight.nil?
 

@@ -2,27 +2,16 @@
 
 # Node for use in a binary search tree (BST)
 class Node
-  include Comparable
-  attr_accessor :data, :left, :right
+  attr_accessor :data, :children
 
-  def <=>(other)
-    data <=> other.data
-  end
-
-  def initialize(data = nil, left = nil, right = nil)
+  # How to make sure argument is a specific type?
+  # data is an instance of Position
+  def initialize(data = nil, children = [])
     @data = data
-    @left = left
-    @right = right
-  end
-
-  def childs
-    child_array = []
-    child_array.push(@left) unless @left.nil?
-    child_array.push(@right) unless @right.nil?
-    child_array
+    @children = children
   end
 
   def leaf?
-    childs.empty?
+    children.empty?
   end
 end
