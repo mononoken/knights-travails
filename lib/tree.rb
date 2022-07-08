@@ -8,25 +8,24 @@ class Tree
 
   def initialize(knight, last_position = nil)
     @knight = knight
-    @root = build_tree(knight.position, last_position)
+    @root = Node.new(knight.position)
+    build_tree(root, last_position)
   end
 
-  def build_tree(first_position, last_position = nil)
-    start_tree(first_position)
-    # until tree.include?(last_position)
-    # expand_tree
+  def build_tree(first_position = root, last_position = nil)
+    grow_leaf(first_position)
+    expand_tree until preorder.any? { |node| node.position == last_position }
+    root
   end
 
-  def start_tree(position)
-    Node.new(position, knight.moves(position).map { |next_position| Node.new(next_position) })
-    # moves from Knight
+  def grow_leaf(leaf)
+    # Seems #moves may not belong with Knight
+    leaf.children = knight.moves(leaf.position).map { |position| Node.new(position) }
   end
 
-  def expand_tree(tree = nil)
+  def expand_tree(positions = preorder(root))
     # loop through all elements of tree
-    if node.leaf?
-      # Find children/moves of each child and link to node
-    end
+    positions.each { |position| grow_leaf(position) if position.leaf? }
   end
 
   def preorder(pointer = root, preorder_list = [], &block)
