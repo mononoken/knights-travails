@@ -52,6 +52,6 @@ class Game
   # Search for midpoint would resemble array2.filter { |num| array1.any?(num) }
   def knight_moves(start, finish)
     place_knight(start)
-    Tree.new(knight.position, board.position(finish))
+    Tree.new(knight, board.position(finish)).find_path(start, finish)
   end
 end
