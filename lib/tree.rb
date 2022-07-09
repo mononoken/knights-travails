@@ -41,6 +41,23 @@ class Tree
     end
   end
 
+  def find_path(start, finish)
+    # Go through preorder.any? to find node.children.any?(finish)
+    # Next find preorder.any? the result of previous search
+    # Continue
+    # Loop is until node == start
+    path = [finish]
+    until path.any?(start)
+      next_coordinate = preorder.filter do |node|
+        node.children.any? { |child| child.position.coordinate == path[0] }
+      end.map { |node| node.position.coordinate }
+      unless next_coordinate.empty?
+        path.unshift(next_coordinate[0])
+      end
+    end
+    path
+  end
+
   def find_midpoint(start, finish)
     # start.children = build_tree(start)
     # finish.children = build_tree(finish)
