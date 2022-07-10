@@ -27,16 +27,6 @@ class Game
     @knight&.position&.empty_content
   end
 
-  def move_knight(destination_coordinates)
-    destination_position = @board.position(destination_coordinates)
-
-    return nil unless @knight.valid_move?(destination_position)
-
-    @knight.position.empty_content
-    @knight.move(destination_position)
-    destination_position.add_content(@knight)
-  end
-
   def knight_moves(start, finish)
     place_knight(start)
     moves = Tree.new(knight, board.position(finish)).find_path(start, finish)
