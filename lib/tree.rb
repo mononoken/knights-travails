@@ -51,23 +51,4 @@ class Tree
     end
     path
   end
-
-  def find_midpoint(start, finish)
-    # start.children = build_tree(start)
-    # finish.children = build_tree(finish)
-    # if midpoint = find_shared(start_moves, finish_moves).nil?
-    #   find_midpoint(start.children, finish.children)
-    # else
-    #   return midpoint
-    # end
-  end
-
-  def find_shared(array, other_array)
-    shared = array.filter { |item| other_array.any?(item) }
-    if shared.empty?
-      nil
-    else
-      shared
-    end
-  end
 end
