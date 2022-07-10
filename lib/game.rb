@@ -24,9 +24,7 @@ class Game
   end
 
   def remove_knight
-    # What is safe navigation? Look up when we have internet connection.
-    @knight.position.empty_content unless @knight.nil?
-    @knight = nil
+    @knight&.position&.empty_content
   end
 
   def move_knight(destination_coordinates)
