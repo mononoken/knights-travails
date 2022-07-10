@@ -3,8 +3,6 @@
 require_relative './board'
 require_relative './knight'
 require_relative './position'
-
-# Delete?
 require_relative './tree'
 
 # Represent a game of chess.

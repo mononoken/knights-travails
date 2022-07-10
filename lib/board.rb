@@ -30,7 +30,7 @@ class Board
   end
 
   def create_board
-    create_coordinates.map { |coordinate| Position.new(coordinate)}
+    create_coordinates.map { |coordinate| Position.new(coordinate) }
   end
 
   def position(coordinate)
