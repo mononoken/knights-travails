@@ -39,19 +39,18 @@ class Game
     destination_position.add_content(@knight)
   end
 
-  # DON'T PANIC. STACK OVERFLOW.
-  # Need to bring over Node and Tree class
-  # Tree class should be more than just binary
-  # Every 'round' check if any of the paths hvae reached finish.
-  # If yes, return that path
-  # If no, build tree off of these paths
-
-  # Faith recommended running two trees starting from start and finish
-  # Would have to compare each node against the other tree to see if any nodes match
-  # (this would be the midpoint)
-  # Search for midpoint would resemble array2.filter { |num| array1.any?(num) }
   def knight_moves(start, finish)
     place_knight(start)
-    Tree.new(knight, board.position(finish)).find_path(start, finish)
+    moves = Tree.new(knight, board.position(finish)).find_path(start, finish)
+    puts "You made it in #{moves.count} moves! Here's your path:"
+    moves.each { |coordinate| p coordinate }
   end
 end
+
+test = Game.new
+puts 'Test[0,0] to [1,2]'
+test.knight_moves([0,0],[1,2]) == [[0,0],[1,2]]
+puts 'Test [0,0] to [3,3]'
+test.knight_moves([0,0],[3,3]) == [[0,0],[1,2],[3,3]]
+puts 'Test [3,3] to [0,0]'
+test.knight_moves([3,3],[0,0]) == [[3,3],[1,2],[0,0]]

@@ -5,7 +5,6 @@ class Node
   attr_accessor :position, :children
 
   # How to make sure argument is a specific type?
-  # data is an instance of Position
   def initialize(position = nil, children = [])
     @position = position
     @children = children

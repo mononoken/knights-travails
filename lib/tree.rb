@@ -3,6 +3,7 @@
 require_relative './node'
 require_relative './knight'
 
+# Tree of moves to find shortest path from knight's current position to desired last_position.
 class Tree
   attr_reader :knight, :root
 
@@ -19,12 +20,10 @@ class Tree
   end
 
   def grow_leaf(leaf)
-    # Seems #moves may not belong with Knight
     leaf.children = knight.moves(leaf.position).map { |position| Node.new(position) }
   end
 
   def expand_tree(positions = preorder(root))
-    # loop through all elements of tree
     positions.each { |position| grow_leaf(position) if position.leaf? }
   end
 
@@ -42,18 +41,13 @@ class Tree
   end
 
   def find_path(start, finish)
-    # Go through preorder.any? to find node.children.any?(finish)
-    # Next find preorder.any? the result of previous search
-    # Continue
-    # Loop is until node == start
     path = [finish]
     until path.any?(start)
-      next_coordinate = preorder.filter do |node|
+      next_nodes = preorder.filter do |node|
         node.children.any? { |child| child.position.coordinate == path[0] }
-      end.map { |node| node.position.coordinate }
-      unless next_coordinate.empty?
-        path.unshift(next_coordinate[0])
       end
+      next_coordinate = next_nodes[0].position.coordinate
+      path.unshift(next_coordinate) unless next_coordinate.empty?
     end
     path
   end
